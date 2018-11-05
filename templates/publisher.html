@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+</head>
+<body>
+<a href="/add_pub/">添加</a>
+<table border="1">
+    <thead>
+    <tr>
+        <td>序号</td>
+        <td>id</td>
+        <td>name</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for foo in publisher_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ foo.id }}</td>
+            <td>{{ foo.name }}</td>
+            <td><a href="/del_pub/?id={{ foo.id }}">删除</a></td>
+            <td><a href="/edit_pub/?id={{ foo.id }}">修改</a></td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除出版社</title>
+</head>
+<body>
+<h3></h3>
+<form action="/edit_pub/" method="post">
+    <input name="id" type="text" style="display: none;" value="{{ pub_obj.id }}">
+    <input name="name" type="text" value="{{ pub_obj.name }}">
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

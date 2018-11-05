@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://v3.bootcss.com/examples/dashboard/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>图书管理系统</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'Dashboard Template for Bootstrap_files/dashboard.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+{% include 'nav.html' %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="{% if publisher_list %}active{% endif %}"><a href="{% url 'publisher_list' %}">出版社管理</a></li>
+                <li class="{% if book_list %}active{% endif %}"><a href="{% url 'book_list' %}">图书管理</a></li>
+                <li class="{% if autor_list %}active{% endif %}"><a href="{% url 'autor_list' %}">作者管理</a></li>
+            </ul>
+        </div>
+        {% block page_main %}
+        
+        {% endblock %}
+    </div>
+</div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/add_pub/" method="post">
+                    <div class="form-group hide">
+                        <label for="inputId3" class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input name="id" type="text" class="form-control" id="inputId3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName3" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input name="name" type="text" class="form-control" id="inputName3">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <input type="submit" class="btn btn-primary" value="保存">
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'jquery-3.2.1.min.js'%}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script>
+
+    $("tbody").on("click", ".my-edit-btn", function () {
+        var $currentTrEle = $(this).parent().parent();
+
+        var id = $currentTrEle.children().eq(1).text();
+        var name = $currentTrEle.children().eq(2).text();
+
+        $("#inputId3").val(id);
+        $("#inputName3").val(name);
+
+    });
+
+
+</script>
+</body>
+</html>
